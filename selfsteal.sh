@@ -7,9 +7,9 @@
 # ║  Author:  DigneZzZ (https://github.com/DigneZzZ)               ║
 # ║  License: MIT                                                  ║
 # ╚════════════════════════════════════════════════════════════════╝
-# VERSION=2.10.0
+# VERSION=2.10.1
 
-SCRIPT_VERSION="2.10.0"
+SCRIPT_VERSION="2.10.1"
 
 # Handle @ prefix for consistency with other scripts
 if [ $# -gt 0 ] && [ "$1" = "@" ]; then
