@@ -116,21 +116,22 @@ DEFAULT_PORT="9443"
 TEMPLATE_REPO="SniffZet/custom-sni"
 
 # Template Registry. TEMPLATE_FOLDERS values are the full path within
-# TEMPLATE_REPO.
+# TEMPLATE_REPO (templates live under custom-sni-templates/ in that repo,
+# not at its root).
 declare -A TEMPLATE_FOLDERS=(
-    ["1"]="01-outage"
-    ["2"]="02-cloudbox"
-    ["3"]="03-swiftconvert"
-    ["4"]="04-fetchlink"
-    ["5"]="05-pulsemeter"
-    ["6"]="06-streamloop"
-    ["7"]="07-chuckledeck"
-    ["8"]="08-forgemods"
-    ["9"]="09-pixelarcade"
-    ["10"]="10-clipforge"
-    ["11"]="11-dispatch"
-    ["12"]="12-cartway"
-    ["13"]="13-roundtable"
+    ["1"]="custom-sni-templates/01-outage"
+    ["2"]="custom-sni-templates/02-cloudbox"
+    ["3"]="custom-sni-templates/03-swiftconvert"
+    ["4"]="custom-sni-templates/04-fetchlink"
+    ["5"]="custom-sni-templates/05-pulsemeter"
+    ["6"]="custom-sni-templates/06-streamloop"
+    ["7"]="custom-sni-templates/07-chuckledeck"
+    ["8"]="custom-sni-templates/08-forgemods"
+    ["9"]="custom-sni-templates/09-pixelarcade"
+    ["10"]="custom-sni-templates/10-clipforge"
+    ["11"]="custom-sni-templates/11-dispatch"
+    ["12"]="custom-sni-templates/12-cartway"
+    ["13"]="custom-sni-templates/13-roundtable"
 )
 
 declare -A TEMPLATE_NAMES=(
@@ -3421,6 +3422,12 @@ download_via_git() {
 
     echo -e "${WHITE}📦 Using Git for download...${NC}"
 
+    # Remember where we were so we can get back there on every exit path --
+    # cd'ing into $temp_dir and then rm -rf'ing it without cd'ing back would
+    # otherwise leave the shell's CWD pointing at a deleted directory, making
+    # every later relative-path operation (curl -o, cat > index.html, ...)
+    # fail with a confusing "No such file or directory".
+    local orig_dir="$PWD"
     local temp_dir="/tmp/selfsteal-template-$$"
     create_dir_safe "$temp_dir" || return 1
 
@@ -3437,11 +3444,13 @@ download_via_git() {
         local files_copied
         files_copied=$(find "$HTML_DIR" -type f | wc -l)
         log_success "Template files copied: $files_copied files"
+        cd "$orig_dir" || true
         rm -rf "$temp_dir"
         show_download_summary "$files_copied" "${template_name:-Template}"
         return 0
     fi
 
+    cd "$orig_dir" || true
     rm -rf "$temp_dir"
     return 1
 }
@@ -3592,8 +3601,8 @@ show_download_summary() {
 # Fallback функция для создания базового HTML если скачивание не удалось
 create_fallback_html() {
     local template_name="$1"
-    
-    cat > "index.html" << EOF
+
+    cat > "$HTML_DIR/index.html" << EOF
 <!DOCTYPE html>
 <html lang="en">
 <head>
