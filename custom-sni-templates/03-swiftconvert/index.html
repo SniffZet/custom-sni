@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swiftly — Convert any file in seconds</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111827'/%3E%3Cpath d='M10 12l-3 4 3 4M22 12l3 4-3 4M18 9l-4 14' stroke='%2300d9a3' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <svg width="22" height="22" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#00d9a3"/><path d="M10 12l-3 4 3 4M22 12l3 4-3 4M18 9l-4 14" stroke="#0b1220" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Swiftly
+      </div>
+      <nav class="links">
+        <a href="#">Convert</a>
+        <a href="#">Compress</a>
+        <a href="#">Merge</a>
+        <a href="#">API</a>
+      </nav>
+      <button class="cta">Sign up free</button>
+    </div>
+  </header>
+
+  <main class="hero">
+    <h1>Convert files without the hassle.</h1>
+    <p>Drop a file, pick an output format, download the result. 120+ formats supported, no installs required.</p>
+
+    <div class="converter">
+      <div class="dropzone" id="dropzone">
+        <div class="dz-icon">⇧</div>
+        <p class="dz-title">Drag &amp; drop a file here</p>
+        <p class="dz-sub">or click to browse from your device</p>
+        <input type="file" id="fileInput" hidden>
+      </div>
+
+      <div class="options">
+        <div class="opt">
+          <label>Convert to</label>
+          <select id="formatSelect">
+            <optgroup label="Documents">
+              <option>PDF</option>
+              <option>DOCX</option>
+              <option>ODT</option>
+              <option>TXT</option>
+            </optgroup>
+            <optgroup label="Images">
+              <option>PNG</option>
+              <option>JPG</option>
+              <option>WEBP</option>
+              <option>SVG</option>
+            </optgroup>
+            <optgroup label="Audio / Video">
+              <option>MP3</option>
+              <option>MP4</option>
+              <option>WAV</option>
+              <option>GIF</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="opt">
+          <label>Quality</label>
+          <select>
+            <option>Standard</option>
+            <option>High</option>
+            <option>Lossless</option>
+          </select>
+        </div>
+        <button class="convert-btn" id="convertBtn" disabled>Convert file</button>
+      </div>
+
+      <div class="progress-wrap hidden" id="progressWrap">
+        <div class="progress-row">
+          <span id="progLabel">Converting…</span>
+          <span id="progPct">0%</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
+      </div>
+    </div>
+
+    <div class="badges">
+      <span>No file size limit</span>
+      <span>Files auto-delete after 1 hour</span>
+      <span>256-bit TLS in transit</span>
+    </div>
+  </main>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>

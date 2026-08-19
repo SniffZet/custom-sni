@@ -1,0 +1,73 @@
+:root{
+  --bg:#0f0f13;
+  --card:#191a20;
+  --border:#2a2b33;
+  --text:#f1f1f4;
+  --muted:#8b8c96;
+  --orange:#ff9d2e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.nav{
+  position:sticky;top:0;z-index:5;
+  display:flex;align-items:center;gap:20px;
+  padding:14px 22px;border-bottom:1px solid var(--border);
+  background:rgba(15,15,19,.92);backdrop-filter:blur(6px);
+}
+.brand{font-weight:800;font-size:18px}
+.tabs{display:flex;gap:6px;flex:1}
+.tab{
+  border:none;background:transparent;color:var(--muted);
+  padding:8px 14px;border-radius:8px;font-size:13.5px;font-weight:600;cursor:pointer;
+}
+.tab.active{background:var(--card);color:var(--text)}
+.post-btn{
+  border:none;background:var(--orange);color:#2b1600;font-weight:700;
+  padding:8px 16px;border-radius:8px;font-size:13.5px;cursor:pointer;
+}
+
+.feed{
+  max-width:560px;margin:0 auto;padding:20px 16px 40px;
+  display:flex;flex-direction:column;gap:16px;
+}
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+}
+.card-head{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 14px;font-size:13px;color:var(--muted);
+}
+.card-head b{color:var(--text)}
+.card-media{
+  aspect-ratio:4/3;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:700;text-align:center;
+  padding:24px;line-height:1.4;
+  color:#1b1200;
+}
+.card-body{padding:12px 14px 6px;font-size:14px;color:var(--muted)}
+.card-actions{
+  display:flex;align-items:center;gap:16px;
+  padding:10px 14px 14px;font-size:13px;color:var(--muted);
+}
+.card-actions .up{color:var(--orange);font-weight:700}
+.card-actions button{
+  background:none;border:none;color:inherit;font:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:5px;
+}
+.card-actions button:hover{color:var(--text)}
+
+.loader{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  color:var(--muted);font-size:13px;padding:20px 0 40px;
+}
+.spinner{
+  width:14px;height:14px;border-radius:50%;
+  border:2px solid var(--border);border-top-color:var(--orange);
+  animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}

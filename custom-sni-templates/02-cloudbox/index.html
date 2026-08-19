@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stashly — Your files, everywhere</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236b5bff'/%3E%3Cpath d='M9 20a4 4 0 01.6-7.96A5.5 5.5 0 0120 13.4 3.6 3.6 0 0122.5 20H9z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="page">
+    <section class="brand-pane">
+      <div class="brand-top">
+        <div class="logo">
+          <svg width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#fff" fill-opacity=".15"/><path d="M9 20a4 4 0 01.6-7.96A5.5 5.5 0 0120 13.4 3.6 3.6 0 0122.5 20H9z" fill="#fff"/></svg>
+          <span>Stashly</span>
+        </div>
+      </div>
+
+      <div class="brand-mid">
+        <h1>All your files,<br>always in sync.</h1>
+        <p>Store, share and access your documents, photos and backups from any device — encrypted at rest, versioned automatically.</p>
+
+        <ul class="features">
+          <li><span class="ico">✓</span> 2 TB of encrypted storage</li>
+          <li><span class="ico">✓</span> Automatic version history</li>
+          <li><span class="ico">✓</span> Share links with expiry dates</li>
+          <li><span class="ico">✓</span> Sync across unlimited devices</li>
+        </ul>
+      </div>
+
+      <blockquote class="quote">
+        “Switched our whole team over in an afternoon. Search alone is worth it.”
+        <cite>— Priya N., Studio Lead</cite>
+      </blockquote>
+    </section>
+
+    <section class="form-pane">
+      <div class="form-card">
+        <div class="tabs">
+          <button class="tab active" data-tab="signin">Sign in</button>
+          <button class="tab" data-tab="signup">Create account</button>
+        </div>
+
+        <form id="authForm" autocomplete="off">
+          <label class="field">
+            <span>Email address</span>
+            <input type="email" placeholder="you@example.com" required>
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input type="password" placeholder="••••••••••" required>
+          </label>
+
+          <div class="row-between">
+            <label class="check"><input type="checkbox" checked> Keep me signed in</label>
+            <a href="#" onclick="return false;">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="submit" id="submitBtn">Continue</button>
+        </form>
+
+        <div class="divider"><span>or continue with</span></div>
+
+        <div class="sso">
+          <button type="button" class="sso-btn">Google</button>
+          <button type="button" class="sso-btn">Apple</button>
+        </div>
+
+        <p class="terms">By continuing you agree to the Terms of Service and Privacy Policy.</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>

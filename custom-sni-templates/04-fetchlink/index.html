@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fetchlink — Save video &amp; audio from any link</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23131722'/%3E%3Cpath d='M16 8v13M10 16l6 6 6-6' stroke='%2347b4ff' stroke-width='2.3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">
+      <svg width="22" height="22" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#47b4ff"/><path d="M16 8v13M10 16l6 6 6-6" stroke="#0b1220" stroke-width="2.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Fetchlink
+    </div>
+    <div class="nav-right"><span class="pill">Invite-only beta</span></div>
+  </header>
+
+  <main class="hero">
+    <h1>Paste a link. Get your file.</h1>
+    <p>Save video and audio from most streaming and social platforms directly to your device — no extensions, no watermarks.</p>
+
+    <div class="fetch-card" id="fetchCard">
+      <div class="url-row">
+        <input type="text" id="urlInput" placeholder="Paste a video or audio link…">
+        <button id="fetchBtn">Fetch</button>
+      </div>
+      <p class="hint">Example: https://example.com/watch?v=…</p>
+
+      <div class="results hidden" id="results">
+        <div class="result-item">
+          <div class="thumb"></div>
+          <div class="meta">
+            <div class="title">Requested media</div>
+            <div class="sub">Detected · ready to export</div>
+          </div>
+        </div>
+        <div class="quality-list" id="qualityList">
+          <button class="q-opt" data-fmt="MP4 · 1080p">MP4 · 1080p<span>84.2 MB</span></button>
+          <button class="q-opt" data-fmt="MP4 · 720p">MP4 · 720p<span>46.7 MB</span></button>
+          <button class="q-opt" data-fmt="MP3 · audio only">MP3 · audio only<span>6.1 MB</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gate hidden" id="gate">
+      <div class="gate-card">
+        <h2>Enter your invite code</h2>
+        <p>Fetchlink is in limited beta. Ask an existing member for a code, or join the waitlist.</p>
+        <div class="gate-row">
+          <input type="text" id="codeInput" maxlength="8" placeholder="XXXX-XXXX">
+          <button id="codeBtn">Unlock</button>
+        </div>
+        <a href="#" class="waitlist" onclick="return false;">Join the waitlist instead</a>
+      </div>
+    </div>
+
+    <ul class="steps">
+      <li><b>1.</b> Copy the link to the video or audio you want</li>
+      <li><b>2.</b> Paste it above and choose a format</li>
+      <li><b>3.</b> Download instantly to your device</li>
+    </ul>
+  </main>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>

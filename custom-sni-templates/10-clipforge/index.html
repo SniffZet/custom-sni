@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clipforge — Online video studio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e1013'/%3E%3Crect x='7' y='11' width='13' height='10' rx='2' fill='%23ffb020'/%3E%3Cpath d='M22 14l4-2.5v9L22 18z' fill='%23ffb020'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">
+      <svg width="22" height="22" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#ffb020"/><rect x="7" y="11" width="13" height="10" rx="2" fill="#151607"/><path d="M22 14l4-2.5v9L22 18z" fill="#151607"/></svg>
+      Clipforge
+    </div>
+    <nav class="links">
+      <a href="#">Trim &amp; cut</a>
+      <a href="#">Convert</a>
+      <a href="#">Compress</a>
+      <a href="#">Add subtitles</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <h1>Edit video right in your browser.</h1>
+    <p>Trim, convert and compress clips from popular platforms and local files — no software to install.</p>
+
+    <div class="studio">
+      <div class="source-row">
+        <button class="src-tab active" data-src="link">Paste a link</button>
+        <button class="src-tab" data-src="file">Upload a file</button>
+      </div>
+
+      <div class="src-panel" id="linkPanel">
+        <div class="input-row">
+          <input type="text" id="linkInput" placeholder="Paste a video URL to import…">
+          <button id="importBtn">Import</button>
+        </div>
+      </div>
+      <div class="src-panel hidden" id="filePanel">
+        <div class="dropzone" id="dropzone">Click or drop a video file here</div>
+        <input type="file" id="fileInput" hidden accept="video/*">
+      </div>
+
+      <div class="editor hidden" id="editor">
+        <div class="preview">
+          <div class="preview-frame">
+            <span class="play">▶</span>
+          </div>
+          <div class="timeline">
+            <div class="timeline-track">
+              <div class="range" id="range"></div>
+              <div class="handle left" id="handleLeft"></div>
+              <div class="handle right" id="handleRight"></div>
+            </div>
+            <div class="time-labels"><span id="startTime">0:00</span><span id="endTime">2:14</span></div>
+          </div>
+        </div>
+
+        <div class="tools">
+          <div class="tool-group">
+            <label>Output format</label>
+            <select>
+              <option>MP4 (H.264)</option>
+              <option>WEBM</option>
+              <option>MOV</option>
+              <option>GIF</option>
+            </select>
+          </div>
+          <div class="tool-group">
+            <label>Resolution</label>
+            <select>
+              <option>1080p</option>
+              <option>720p</option>
+              <option>480p</option>
+            </select>
+          </div>
+          <button class="export-btn" id="exportBtn">Export clip</button>
+          <div class="export-progress hidden" id="exportProgress">
+            <div class="export-track"><div class="export-fill" id="exportFill"></div></div>
+            <span id="exportLabel">Rendering…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>

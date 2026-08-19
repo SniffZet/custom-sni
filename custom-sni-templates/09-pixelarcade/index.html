@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixelarcade — Free browser games</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d0221'/%3E%3Crect x='8' y='13' width='16' height='9' rx='2' fill='%2300f5d4'/%3E%3Ccircle cx='12' cy='17.5' r='1.4' fill='%230d0221'/%3E%3Ccircle cx='20' cy='17.5' r='1.4' fill='%230d0221'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">👾 PIXELARCADE</div>
+    <div class="marquee"><span id="marqueeText">HIGH SCORE CHALLENGE THIS WEEK · NEW GAME EVERY FRIDAY · 100% FREE, NO DOWNLOAD ·&nbsp;</span></div>
+    <button class="coin-btn">🪙 <span id="coinCount">240</span></button>
+  </header>
+
+  <div class="tape">
+    <button class="cat active" data-cat="all">ALL</button>
+    <button class="cat" data-cat="arcade">ARCADE</button>
+    <button class="cat" data-cat="puzzle">PUZZLE</button>
+    <button class="cat" data-cat="racing">RACING</button>
+    <button class="cat" data-cat="platformer">PLATFORMER</button>
+  </div>
+
+  <main class="grid" id="grid"></main>
+
+  <footer class="foot">© Pixelarcade — press start to continue</footer>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>

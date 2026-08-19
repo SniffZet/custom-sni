@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>503 · Service Temporarily Unavailable</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23161a22'/%3E%3Cpath d='M9 21l7-11 7 11z' fill='none' stroke='%23ff7a45' stroke-width='2.4' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='18' r='1.4' fill='%23ff7a45'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <main class="wrap">
+    <div class="badge">HTTP 503</div>
+    <h1>The service can't take your request right now</h1>
+    <p class="lede">Our nodes are past capacity or under maintenance. This is temporary — the origin will start accepting traffic again shortly. No action is needed on your end.</p>
+
+    <div class="panel">
+      <div class="row">
+        <span class="label">Status</span>
+        <span class="value"><i class="dot"></i> Degraded</span>
+      </div>
+      <div class="row">
+        <span class="label">Your address</span>
+        <span class="value" id="clientAddr">resolving…</span>
+      </div>
+      <div class="row">
+        <span class="label">Request ID</span>
+        <span class="value mono" id="reqId">—</span>
+      </div>
+      <div class="row">
+        <span class="label">Retrying in</span>
+        <span class="value mono" id="countdown">30s</span>
+      </div>
+    </div>
+
+    <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+
+    <div class="actions">
+      <button id="retryBtn" class="btn">Try again</button>
+      <a href="#" class="btn ghost" onclick="return false;">Status page</a>
+    </div>
+
+    <p class="foot">If this keeps happening, check back in a few minutes. Error reference is shown above for support requests.</p>
+  </main>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
