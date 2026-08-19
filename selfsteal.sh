@@ -18,8 +18,7 @@ fi
 
 # Debug mode - set via --debug flag
 DEBUG_MODE=false
-SCRIPT_URL="https://raw.githubusercontent.com/dignezzz/remnawave-scripts/main/selfsteal.sh"
-UPDATE_URL="$SCRIPT_URL"
+SCRIPT_URL="https://raw.githubusercontent.com/SniffZet/custom-sni/main/selfsteal.sh"
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -42,6 +41,11 @@ while [[ $# -gt 0 ]]; do
         ;;
     esac
 done
+
+# Set after arg parsing so --source overrides both the download source and the
+# self-update target together, instead of UPDATE_URL silently staying pinned
+# to the pre-parse default.
+UPDATE_URL="$SCRIPT_URL"
 
 # Only enable strict mode if not debugging
 if [ "$DEBUG_MODE" = true ]; then
@@ -107,84 +111,42 @@ LOG_FILE="/var/log/selfsteal.log"
 # Default Settings
 DEFAULT_PORT="9443"
 
-# Template source repos.
-#   TEMPLATE_REPO        -- original 11 templates, under sni-templates/ in this repo.
-#   CUSTOM_TEMPLATE_REPO -- 13 hand-built templates in their own repo (no shared
-#                           assets with the originals).
-TEMPLATE_REPO="DigneZzZ/remnawave-scripts"
-CUSTOM_TEMPLATE_REPO="SniffZet/custom-sni"
+# Template source repo. All templates now come from a single self-hosted
+# repo (no more legacy sni-templates from DigneZzZ/remnawave-scripts).
+TEMPLATE_REPO="SniffZet/custom-sni"
 
-# Template Registry. TEMPLATE_FOLDERS values are the full path *within* the
-# repo named in TEMPLATE_SOURCE_REPO for that id (defaults to TEMPLATE_REPO).
+# Template Registry. TEMPLATE_FOLDERS values are the full path within
+# TEMPLATE_REPO.
 declare -A TEMPLATE_FOLDERS=(
-    ["1"]="sni-templates/10gag"
-    ["2"]="sni-templates/convertit"
-    ["3"]="sni-templates/converter"
-    ["4"]="sni-templates/downloader"
-    ["5"]="sni-templates/filecloud"
-    ["6"]="sni-templates/games-site"
-    ["7"]="sni-templates/modmanager"
-    ["8"]="sni-templates/speedtest"
-    ["9"]="sni-templates/YouTube"
-    ["10"]="sni-templates/503-1"
-    ["11"]="sni-templates/503-2"
-    ["12"]="01-outage"
-    ["13"]="02-cloudbox"
-    ["14"]="03-swiftconvert"
-    ["15"]="04-fetchlink"
-    ["16"]="05-pulsemeter"
-    ["17"]="06-streamloop"
-    ["18"]="07-chuckledeck"
-    ["19"]="08-forgemods"
-    ["20"]="09-pixelarcade"
-    ["21"]="10-clipforge"
-    ["22"]="11-dispatch"
-    ["23"]="12-cartway"
-    ["24"]="13-roundtable"
-)
-
-# Per-id source repo. Ids not listed here fall back to $TEMPLATE_REPO.
-declare -A TEMPLATE_SOURCE_REPO=(
-    ["12"]="$CUSTOM_TEMPLATE_REPO"
-    ["13"]="$CUSTOM_TEMPLATE_REPO"
-    ["14"]="$CUSTOM_TEMPLATE_REPO"
-    ["15"]="$CUSTOM_TEMPLATE_REPO"
-    ["16"]="$CUSTOM_TEMPLATE_REPO"
-    ["17"]="$CUSTOM_TEMPLATE_REPO"
-    ["18"]="$CUSTOM_TEMPLATE_REPO"
-    ["19"]="$CUSTOM_TEMPLATE_REPO"
-    ["20"]="$CUSTOM_TEMPLATE_REPO"
-    ["21"]="$CUSTOM_TEMPLATE_REPO"
-    ["22"]="$CUSTOM_TEMPLATE_REPO"
-    ["23"]="$CUSTOM_TEMPLATE_REPO"
-    ["24"]="$CUSTOM_TEMPLATE_REPO"
+    ["1"]="01-outage"
+    ["2"]="02-cloudbox"
+    ["3"]="03-swiftconvert"
+    ["4"]="04-fetchlink"
+    ["5"]="05-pulsemeter"
+    ["6"]="06-streamloop"
+    ["7"]="07-chuckledeck"
+    ["8"]="08-forgemods"
+    ["9"]="09-pixelarcade"
+    ["10"]="10-clipforge"
+    ["11"]="11-dispatch"
+    ["12"]="12-cartway"
+    ["13"]="13-roundtable"
 )
 
 declare -A TEMPLATE_NAMES=(
-    ["1"]="😂 10gag - Сайт мемов"
-    ["2"]="📁 Convertit - Конвертер файлов"
-    ["3"]="🎬 Converter - Видеостудия-конвертер"
-    ["4"]="⬇️ Downloader - Даунлоадер"
-    ["5"]="☁️ FileCloud - Облачное хранилище"
-    ["6"]="🎮 Games-site - Ретро игровой портал"
-    ["7"]="🛠️ ModManager - Мод-менеджер для игр"
-    ["8"]="🚀 SpeedTest - Спидтест"
-    ["9"]="📺 YouTube - Видеохостинг с капчей"
-    ["10"]="⚠️ 503 Error - Страница ошибки v1"
-    ["11"]="⚠️ 503 Error - Страница ошибки v2"
-    ["12"]="⚠️ Outage - Страница 503 с таймером"
-    ["13"]="☁️ Stashly - Облачное хранилище"
-    ["14"]="🔄 Swiftly - Конвертер файлов"
-    ["15"]="⬇️ Fetchlink - Даунлоадер по инвайт-коду"
-    ["16"]="🚀 Pulsemeter - Спидтест"
-    ["17"]="📺 StreamLoop - Видеохостинг"
-    ["18"]="😂 Chuckledeck - Лента мемов"
-    ["19"]="🛠️ ForgeMods - Мод-менеджер для игр"
-    ["20"]="🎮 Pixelarcade - Ретро игровой портал"
-    ["21"]="🎬 Clipforge - Видеостудия"
-    ["22"]="📰 Dispatch - Новостной портал"
-    ["23"]="🛒 Cartway - Интернет-магазин"
-    ["24"]="🗨️ Roundtable - Форум"
+    ["1"]="⚠️ Outage - Страница 503 с таймером"
+    ["2"]="☁️ Stashly - Облачное хранилище"
+    ["3"]="🔄 Swiftly - Конвертер файлов"
+    ["4"]="⬇️ Fetchlink - Даунлоадер по инвайт-коду"
+    ["5"]="🚀 Pulsemeter - Спидтест"
+    ["6"]="📺 StreamLoop - Видеохостинг"
+    ["7"]="😂 Chuckledeck - Лента мемов"
+    ["8"]="🛠️ ForgeMods - Мод-менеджер для игр"
+    ["9"]="🎮 Pixelarcade - Ретро игровой портал"
+    ["10"]="🎬 Clipforge - Видеостудия"
+    ["11"]="📰 Dispatch - Новостной портал"
+    ["12"]="🛒 Cartway - Интернет-магазин"
+    ["13"]="🗨️ Roundtable - Форум"
 )
 
 # Color definitions
@@ -3308,7 +3270,7 @@ show_current_template_info() {
 # Template Mutation (anti-fingerprint)
 # ============================================
 # Makes every install byte-unique and slightly different in appearance so the
-# served decoy does NOT match the public sni-templates repo by hash/title/
+# served decoy does NOT match the public template repo by hash/title/
 # structure, and strips known provenance leaks. Safe for the minified
 # React/Vite SPA shells most templates ship as: it never renames CSS classes
 # or reorders DOM (that would break the bundles) — uniqueness comes from
@@ -3407,7 +3369,7 @@ download_template() {
     if [[ -n "${TEMPLATE_FOLDERS[$template_type]:-}" ]]; then
         template_folder="${TEMPLATE_FOLDERS[$template_type]}"
         template_name="${TEMPLATE_NAMES[$template_type]}"
-        repo="${TEMPLATE_SOURCE_REPO[$template_type]:-$TEMPLATE_REPO}"
+        repo="$TEMPLATE_REPO"
     else
         log_error "Unknown template type: $template_type"
         return 1
