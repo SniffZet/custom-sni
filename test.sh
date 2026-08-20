@@ -18,7 +18,7 @@ fi
 
 # Debug mode - set via --debug flag
 DEBUG_MODE=false
-SCRIPT_URL="https://raw.githubusercontent.com/SniffZet/custom-sni/main/selfsteal.sh"
+SCRIPT_URL="https://raw.githubusercontent.com/SniffZet/custom-sni/main/test.sh"
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
